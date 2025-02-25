@@ -8,70 +8,73 @@
 </head>
 <body>
     <div class="container">
-        <h1>Baby X Dashboard</h1>
+        <header>
+            <img src="https://cdn.prod.website-files.com/67a0cb20a913364adf0401a8/67a0cc07474db23ccc3b743a_X%20LOGO%20TRANSPARENT-p-800.png" alt="Baby X Logo" class="logo">
+            <h1>Baby X Dashboard</h1>
+        </header>
+
+        <nav>
+            <select id="sectionSelect" onchange="toggleSection()">
+                <option value="token-info">General Token Info</option>
+                <option value="pairs">Baby X Pairs</option>
+                <option value="wallet-stats">Wallet Stats</option>
+            </select>
+        </nav>
 
         <!-- General Token Info -->
-        <section class="token-info">
+        <section id="token-info" class="section active">
             <h2>General Token Info</h2>
-            <div id="babyXInfo">
-                <p><strong>Baby X Address:</strong> 0x2E2A9Cc28922FfB239000F8fa23D753DAAf71A69</p>
-                <p><strong>Name:</strong> <span id="babyXName">Loading...</span></p>
-                <p><strong>Holders:</strong> <span id="babyXHolders">Loading...</span></p>
-                <p><strong>Total Supply:</strong> <span id="babyXSupply">Loading...</span></p>
-            </div>
-            <div id="xInfo">
-                <p><strong>X Address:</strong> 0xA6C4790cc7Aa22CA27327Cb83276F2aBD687B55b</p>
-                <p><strong>Name:</strong> <span id="xName">Loading...</span></p>
-                <p><strong>Holders:</strong> <span id="xHolders">Loading...</span></p>
-                <p><strong>Total Supply:</strong> <span id="xSupply">Loading...</span></p>
+            <div class="card-container">
+                <div class="card">
+                    <h3>Baby X</h3>
+                    <p><strong>Address:</strong> 0x2E2A9Cc28922FfB239000F8fa23D753DAAf71A69</p>
+                    <p><strong>Name:</strong> <span id="babyXName"></span></p>
+                    <p><strong>Holders:</strong> <span id="babyXHolders"></span></p>
+                    <p><strong>Total Supply:</strong> <span id="babyXSupply"></span></p>
+                </div>
+                <div class="card">
+                    <h3>X</h3>
+                    <p><strong>Address:</strong> 0xA6C4790cc7Aa22CA27327Cb83276F2aBD687B55b</p>
+                    <p><strong>Name:</strong> <span id="xName"></span></p>
+                    <p><strong>Holders:</strong> <span id="xHolders"></span></p>
+                    <p><strong>Total Supply:</strong> <span id="xSupply"></span></p>
+                </div>
             </div>
         </section>
 
         <!-- Pairs -->
-        <section class="pairs">
+        <section id="pairs" class="section">
             <h2>Baby X Pairs</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Pair Address</th>
-                        <th>Paired Token</th>
-                        <th>TVL (USD)</th>
-                    </tr>
-                </thead>
-                <tbody id="pairsTable"></tbody>
-            </table>
-            <p><strong>Total TVL:</strong> <span id="totalTVL">Loading...</span></p>
-        </section>
-
-        <!-- Wallet Input -->
-        <section class="wallet-input">
-            <h2>Wallet Stats</h2>
-            <input type="text" id="walletAddress" placeholder="Enter PulseChain Address (0x...)">
-            <button onclick="fetchWalletStats()">Fetch Stats</button>
+            <div class="card-container" id="pairsContainer"></div>
+            <p class="total"><strong>Total TVL:</strong> <span id="totalTVL"></span></p>
         </section>
 
         <!-- Wallet Stats -->
-        <section class="wallet-stats" id="walletStats" style="display: none;">
+        <section id="wallet-stats" class="section">
             <h2>Wallet Stats</h2>
-            <p><strong>Baby X Balance:</strong> <span id="babyXBalance">N/A</span></p>
-            <p><strong>X Balance:</strong> <span id="xBalance">N/A</span></p>
-            <p><strong>X Rewards Earned:</strong> <span id="xRewards">N/A</span></p>
-            <p><strong>X Price (USD):</strong> <span id="xPrice">N/A</span></p>
-            <p><strong>Baby X Price (USD):</strong> <span id="babyXPrice">N/A</span></p>
-            <h3>LP Token Holdings</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Pair</th>
-                        <th>LP Token Address</th>
-                        <th>Balance</th>
-                        <th>Value (USD)</th>
-                    </tr>
-                </thead>
-                <tbody id="lpTable"></tbody>
-            </table>
-            <p><strong>Total LP Value (USD):</strong> <span id="totalLPValue">N/A</span></p>
-            <p><strong>Total Portfolio Value (USD):</strong> <span id="totalPortfolioValue">N/A</span></p>
+            <div class="input-group">
+                <input type="text" id="walletAddress" placeholder="Enter PulseChain Address (0x...)" value="0xeb072caa33758038cedf4393d06861b20fbffea8" disabled>
+                <button onclick="alert('Dynamic updates require a proxy. Displaying static data for now.')" class="fetch-btn">Fetch Stats</button>
+            </div>
+            <div id="walletStats" class="card-container">
+                <div class="card">
+                    <h3>Balances</h3>
+                    <p><strong>Baby X:</strong> <span id="babyXBalance"></span></p>
+                    <p><strong>X:</strong> <span id="xBalance"></span></p>
+                    <p><strong>X Rewards:</strong> <span id="xRewards"></span></p>
+                </div>
+                <div class="card">
+                    <h3>Prices</h3>
+                    <p><strong>X Price (USD):</strong> <span id="xPrice"></span></p>
+                    <p><strong>Baby X Price (USD):</strong> <span id="babyXPrice"></span></p>
+                </div>
+                <div class="card full-width">
+                    <h3>LP Token Holdings</h3>
+                    <div id="lpTable" class="lp-table"></div>
+                    <p><strong>Total LP Value (USD):</strong> <span id="totalLPValue"></span></p>
+                    <p><strong>Total Portfolio Value (USD):</strong> <span id="totalPortfolioValue"></span></p>
+                </div>
+            </div>
         </section>
     </div>
     <script src="script.js"></script>
