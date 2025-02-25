@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby X Dashboard - PulseChain</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Baby X Dashboard</h1>
+
+        <!-- General Token Info -->
+        <section class="token-info">
+            <h2>General Token Info</h2>
+            <div id="babyXInfo">
+                <p><strong>Baby X Address:</strong> 0x2E2A9Cc28922FfB239000F8fa23D753DAAf71A69</p>
+                <p><strong>Name:</strong> <span id="babyXName">Loading...</span></p>
+                <p><strong>Holders:</strong> <span id="babyXHolders">Loading...</span></p>
+                <p><strong>Total Supply:</strong> <span id="babyXSupply">Loading...</span></p>
+            </div>
+            <div id="xInfo">
+                <p><strong>X Address:</strong> 0xA6C4790cc7Aa22CA27327Cb83276F2aBD687B55b</p>
+                <p><strong>Name:</strong> <span id="xName">Loading...</span></p>
+                <p><strong>Holders:</strong> <span id="xHolders">Loading...</span></p>
+                <p><strong>Total Supply:</strong> <span id="xSupply">Loading...</span></p>
+            </div>
+        </section>
+
+        <!-- Pairs -->
+        <section class="pairs">
+            <h2>Baby X Pairs</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pair Address</th>
+                        <th>Paired Token</th>
+                        <th>TVL (USD)</th>
+                    </tr>
+                </thead>
+                <tbody id="pairsTable"></tbody>
+            </table>
+            <p><strong>Total TVL:</strong> <span id="totalTVL">Loading...</span></p>
+        </section>
+
+        <!-- Wallet Input -->
+        <section class="wallet-input">
+            <h2>Wallet Stats</h2>
+            <input type="text" id="walletAddress" placeholder="Enter PulseChain Address (0x...)">
+            <button onclick="fetchWalletStats()">Fetch Stats</button>
+        </section>
+
+        <!-- Wallet Stats -->
+        <section class="wallet-stats" id="walletStats" style="display: none;">
+            <h2>Wallet Stats</h2>
+            <p><strong>Baby X Balance:</strong> <span id="babyXBalance">N/A</span></p>
+            <p><strong>X Balance:</strong> <span id="xBalance">N/A</span></p>
+            <p><strong>X Rewards Earned:</strong> <span id="xRewards">N/A</span></p>
+            <p><strong>X Price (USD):</strong> <span id="xPrice">N/A</span></p>
+            <p><strong>Baby X Price (USD):</strong> <span id="babyXPrice">N/A</span></p>
+            <h3>LP Token Holdings</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pair</th>
+                        <th>LP Token Address</th>
+                        <th>Balance</th>
+                        <th>Value (USD)</th>
+                    </tr>
+                </thead>
+                <tbody id="lpTable"></tbody>
+            </table>
+            <p><strong>Total LP Value (USD):</strong> <span id="totalLPValue">N/A</span></p>
+            <p><strong>Total Portfolio Value (USD):</strong> <span id="totalPortfolioValue">N/A</span></p>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

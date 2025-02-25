@@ -1,0 +1,87 @@
+body {
+    background: #000000;
+    color: #ff0000;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: #ff0000;
+    text-shadow: 0 2px 4px rgba(255, 0, 0, 0.7);
+    margin-bottom: 30px;
+}
+
+section {
+    background: #1a0000;
+    border: 2px solid #ff0000;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+h2, h3 {
+    color: #ff0000;
+    border-bottom: 2px solid #ff0000;
+    padding-bottom: 5px;
+    margin-top: 0;
+}
+
+p {
+    color: #ff4d4d;
+    margin: 8px 0;
+}
+
+p strong {
+    color: #ff0000;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #ff4d4d;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #ff0000;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background: #330000;
+    color: #ff0000;
+}
+
+td {
+    background: #0d0000;
+}
+
+.wallet-input input {
+    padding: 8px;
+    border: 2px solid #ff0000;
+    background: #000000;
+    color: #ff0000;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.wallet-input button {
+    padding: 8px 16px;
+    background: #ff0000;
+    color: #000000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.wallet-input button:hover {
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+}
