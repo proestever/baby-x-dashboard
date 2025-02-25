@@ -1,18 +1,17 @@
 // Constants
 const babyXAddress = "0x2E2A9Cc28922FfB239000F8fa23D753DAAf71A69";
 const xAddress = "0xA6C4790cc7Aa22CA27327Cb83276F2aBD687B55b";
-const proxyUrl = "https://cors-anywhere.herokuapp.com/"; // Public CORS proxy (for testing)
 let pairsData = [];
 
 // Fetch General Token Info
 async function fetchTokenInfo(tokenAddress, decimals, nameId, holdersId, supplyId) {
     try {
-        const tokenResponse = await fetch(`${proxyUrl}https://api.scan.pulsechain.com/api/v2/tokens/${tokenAddress}`);
+        const tokenResponse = await fetch(`https://api.scan.pulsechain.com/api/v2/tokens/${tokenAddress}`);
         const tokenData = await tokenResponse.json();
         document.getElementById(nameId).textContent = tokenData.name;
         document.getElementById(holdersId).textContent = tokenData.holders;
 
-        const supplyResponse = await fetch(`${proxyUrl}https://api.scan.pulsechain.com/api/v2/smart-contracts/${tokenAddress}/query-read-method`, {
+        const supplyResponse = await fetch(`https://api.scan.pulsechain.com/api/v2/smart-contracts/${tokenAddress}/query-read-method`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -32,7 +31,7 @@ async function fetchTokenInfo(tokenAddress, decimals, nameId, holdersId, supplyI
 // Fetch Baby X Pairs
 async function fetchPairs() {
     try {
-        const response = await fetch(`${proxyUrl}https://api.dexscreener.com/latest/dex/tokens/${babyXAddress}`);
+        const response = await fetch(`https://api.dexscreener.com/latest/dex/tokens/${babyXAddress}`);
         const data = await response.json();
         pairsData = data.pairs.filter(pair => pair.chainId === "pulsechain");
 
@@ -68,7 +67,7 @@ async function fetchWalletStats() {
 
     try {
         // Baby X Balance
-        const babyXBalanceResponse = await fetch(`${proxyUrl}https://api.scan.pulsechain.com/api/v2/smart-contracts/${babyXAddress}/query-read-method`, {
+        const babyXBalanceResponse = await fetch(`https://api.scan.pulsechain.com/api/v2/smart-contracts/${babyXAddress}/query-read-method`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -82,7 +81,7 @@ async function fetchWalletStats() {
         document.getElementById("babyXBalance").textContent = babyXBalance.toLocaleString();
 
         // X Balance
-        const xBalanceResponse = await fetch(`${proxyUrl}https://api.scan.pulsechain.com/api/v2/smart-contracts/${xAddress}/query-read-method`, {
+        const xBalanceResponse = await fetch(`https://api.scan.pulsechain.com/api/v2/smart-contracts/${xAddress}/query-read-method`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -96,7 +95,7 @@ async function fetchWalletStats() {
         document.getElementById("xBalance").textContent = xBalance.toLocaleString();
 
         // X Rewards
-        const rewardsResponse = await fetch(`${proxyUrl}https://api.scan.pulsechain.com/api/v2/smart-contracts/${babyXAddress}/query-read-method`, {
+        const rewardsResponse = await fetch(`https://api.scan.pulsechain.com/api/v2/smart-contracts/${babyXAddress}/query-read-method`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -110,7 +109,7 @@ async function fetchWalletStats() {
         document.getElementById("xRewards").textContent = rewards.toLocaleString();
 
         // Prices
-        const xPriceResponse = await fetch(`${proxyUrl}https://api.scan.pulsechain.com/api/v2/tokens/${xAddress}/price`);
+        const xPriceResponse = await fetch(`https://api.scan.pulsechain.com/api/v2/tokens/${xAddress}/price`);
         const xPriceData = await xPriceResponse.json();
         const xPrice = xPriceData.price?.usd || 0;
         document.getElementById("xPrice").textContent = `$${xPrice}`;
@@ -125,7 +124,7 @@ async function fetchWalletStats() {
         for (const pair of pairsData) {
             if (!pair.liquidity?.usd) continue;
             const lpTokenAddress = pair.pairAddress;
-            const lpBalanceResponse = await fetch(`${proxyUrl}https://api.scan.pulsechain.com/api/v2/smart-contracts/${lpTokenAddress}/query-read-method`, {
+            const lpBalanceResponse = await fetch(`https://api.scan.pulsechain.com/api/v2/smart-contracts/${lpTokenAddress}/query-read-method`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -137,7 +136,7 @@ async function fetchWalletStats() {
             const lpBalanceData = await lpBalanceResponse.json();
             const lpBalance = lpBalanceData?.result?.output?.[0]?.value ? parseFloat(lpBalanceData.result.output[0].value) / 1e18 : 0;
 
-            const lpTotalSupplyResponse = await fetch(`${proxyUrl}https://api.scan.pulsechain.com/api/v2/smart-contracts/${lpTokenAddress}/query-read-method`, {
+            const lpTotalSupplyResponse = await fetch(`https://api.scan.pulsechain.com/api/v2/smart-contracts/${lpTokenAddress}/query-read-method`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
